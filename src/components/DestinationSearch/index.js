@@ -11,20 +11,21 @@ class DestinationSearch extends Component {
 
   render() {
     const {searchInput} = this.state
+    const {destinationsList} = this.props
     const searchResults = destinationsList.filter(eachItem =>
-      eachItem.name.includes(searchInput),
+      eachItem.name.toLowercase().includes(searchInput.toLowercase()),
     )
     return (
       <div className="search-container">
         <h1 className="heading">Destination Search</h1>
         <input
           type="search"
-          value={search}
+          value={searchInput}
           onChange={this.onChangeSearchInput}
         />
 
         <ul>
-          {userResults.map(eachItem => (
+          {searchResults.map(eachItem => (
             <DestinationSearch destinationsList={eachItem} key={eachItem.id} />
           ))}
         </ul>
